@@ -9,10 +9,8 @@ def menu_drive(current_user)
   puts "5. List all restaurants"
   puts "9. Exit"
   puts "\n"
-
   option_menu_choice = gets.chomp
   puts "\n"
-
   case option_menu_choice.to_i
   when 1
     write_review(current_user)
