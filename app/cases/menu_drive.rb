@@ -9,17 +9,19 @@ def menu_drive(current_user)
   puts "5. List all restaurants"
   puts "9. Exit"
   puts "\n"
-
   option_menu_choice = gets.chomp
   puts "\n"
-
   case option_menu_choice.to_i
   when 1
-      write_review(current_user)
+    write_review(current_user)
   when 2
-      list_all_reviews(current_user)
+    list_all_reviews(current_user)
+  when 3
+    update_review(current_user)
   when 4
-      delete_review(current_user)
+    delete_review(current_user)
+  when 5
+    list_all_restaurants()
   else
     
   end
