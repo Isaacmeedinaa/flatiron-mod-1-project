@@ -1,34 +1,31 @@
 def update_review(user)
+    list = list_all_reviews(user)
+
+    puts "Please select the review you would like to update:"
     puts "\n"
-    puts "Select which review you would like to update:"
-    puts "\n"
 
-    user.reviews.each do |review|
-        puts "#{review.id}. #{review.review_text}"
-    end
+    num = gets.chomp
 
     puts "\n"
-    review_choice_input = gets.chomp
+    puts "Please provide a new review text:"
+    puts "\n"
+    new_review_text = gets.chomp
 
-    selected_review = user.reviews.find_by(id: review_choice_input.to_i)
+    puts "\n"
+    puts "Please provide a new review rating:"
+    puts "\n"
+    new_review_rating = gets.chomp
 
-    if !selected_review
-        puts "Invalid review selected!"
-        exit!
-    else
-        puts "\n"
-        puts "Please provide a new review text:"
-        puts "\n"
-        new_review_text = gets.chomp
-        puts "\n"
-        puts "Please provide a new review rating:"
-        puts "\n"
-        new_review_rating = gets.chomp
+    selected_review = list[num.to_i - 1]
 
+    puts "\n"
+    puts "Are you sure?"
+    puts "\n"
+    if gets.chomp == "Yes"
         selected_review.update(review_text: new_review_text, rating: new_review_rating)
-        puts "\n"
-        puts "Review updated!"
+        puts "Your review has been updated!"
+    else
+        puts "Review has not been updated."
     end
 
-    # binding.pry
 end

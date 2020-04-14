@@ -1,6 +1,6 @@
 def delete_review(user)
   list = list_all_reviews(user)
-  puts "Please selete the reivew you would like to delete."
+  puts "Please selete the review you would like to delete."
   puts "\n"
   num = gets.chomp
   puts "You are about to delete this review:"
