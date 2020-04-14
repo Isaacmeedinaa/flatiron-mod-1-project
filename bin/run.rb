@@ -1,6 +1,8 @@
 require_relative '../config/environment'
 # require_relative 'write_review_case.rb'
 
+# binding.pry
+
 puts "Welcome to our Review App!"
 puts "\n"
 puts "Please type in your username:"
@@ -33,6 +35,12 @@ when 1
     write_review(current_user)
 when 2
     puts "Here are all your reviews:"
+when 3
+    update_review(current_user)
+when 4
+    puts "Select which review you will like to delete:"
+when 5
+    list_all_restaurants
 end
 
 # 1. Write a review !COMPLETED!
@@ -49,7 +57,7 @@ end
 # 2. List all my reviews
     # Here are all your reviews:
 
-# 3. Update a review
+# 3. Update a review !COMPLETED (needs review)!
     # Here are all your reviews, please choose one:
         # Please enter updated review text:
         # Please enter updated review rating:
@@ -63,5 +71,5 @@ end
             # If 'yes', delete (delete).
             # If 'no', exit.
 
-# 5. List all restaurants
+# 5. List all restaurants !COMPLETED!
     # Here are all the restaurants:
