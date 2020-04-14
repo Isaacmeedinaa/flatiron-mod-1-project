@@ -25,5 +25,11 @@ def menu_drive(current_user)
   else
     
   end
+  if option_menu_choice != "9"
+    puts "\n"
+    puts "Hit Enter to return"
+    a = gets.chomp 
+    print "\e[2J\e[f"
+  end
   option_menu_choice.to_i
 end

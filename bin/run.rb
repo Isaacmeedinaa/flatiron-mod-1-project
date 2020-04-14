@@ -16,9 +16,9 @@ if !current_user
     exit!
 end
 
-
+print "\e[2J\e[f"
 puts "\n"
-puts "Hello, #{username}! What would you like to do?"
+puts "Hello, #{username}! Welcome to Review App!"
 
 choice = menu_drive(current_user)
 until choice == 9 do
