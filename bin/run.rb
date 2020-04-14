@@ -16,33 +16,38 @@ if !current_user
     exit!
 end
 
+
 puts "\n"
 puts "Hello, #{username}! What would you like to do?"
 
-puts "\n"
-puts "1. Write a review"
-puts "2. List all my reviews"
-puts "3. Update a review"
-puts "4. Delete a review"
-puts "5. List all restaurants"
-puts "\n"
-
-option_menu_choice = gets.chomp
-puts "\n"
-
-case option_menu_choice.to_i
-when 1
-    write_review(current_user)
-when 2
-    puts "Here are all your reviews:"
-when 3
-    update_review(current_user)
-when 4
-    puts "Select which review you will like to delete:"
-when 5
-    list_all_restaurants
+choice = menu_drive(current_user)
+until choice == 9 do
+    choice = menu_drive(current_user)
 end
 
+# def menu1
+#     puts "\n"
+#     puts "1. Write a review"
+#     puts "2. List all my reviews"
+#     puts "3. Update a review"
+#     puts "4. Delete a review"
+#     puts "5. List all restaurants"
+#     puts "9. Exit"
+#     puts "\n"
+
+#     option_menu_choice = gets.chomp
+#     puts "\n"
+
+#     case option_menu_choice.to_i
+#     when 1
+#         write_review(current_user)
+#     when 2
+#         list_all_reviews(current_user)
+#     when 4
+#         delete_review(current_user)
+#     end
+#     option_menu_choice.to_i
+# end
 # 1. Write a review !COMPLETED!
     # What restaurant would like to write a review for?
     # if restaurant is not found: "No restaurant found, try again".
