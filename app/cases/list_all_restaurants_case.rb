@@ -10,6 +10,7 @@ def list_all_restaurants(food_type=nil)
         restaurant_list = Restaurant.all.order(:name)
     end
 
+    
     restaurant_list.each_with_index do |restaurant, i|
         puts "#{i+1}. #{restaurant.name} located in #{restaurant.city}. Food type is: #{restaurant.restaurant_food_type.name}"
     end
