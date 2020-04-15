@@ -48,7 +48,7 @@ def write_review(user)
     puts "\n"
     confirmation = gets.chomp
 
-    if confirmation == "Yes"
+    if confirmation.downcase == "yes"
         new_review = Review.create(review_text: review_message, rating: review_rating.to_i)
         user.reviews << new_review
         found_restaurant.reviews << new_review

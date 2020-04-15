@@ -1,21 +1,26 @@
 require_relative '../config/environment'
+# require_relative 'write_review_case.rb'
 
+# binding.pry
+print "\e[2J\e[f"
 puts "Welcome to our Review App!"
 puts "\n"
-puts "Please type in your username:"
 
-username = gets.chomp
+current_user = login
+# puts "Please type in your username:"
 
-current_user = User.find_user_by_name(username)
+# username = gets.chomp
 
-if !current_user
-    puts "Username not found!"
-    exit!
-end
+# current_user = User.find_user_by_name(username)
+
+# if !current_user
+#     puts "Username not found!"
+#     exit!
+# end
 
 print "\e[2J\e[f"
 puts "\n"
-puts "Hello, #{username}! Welcome to Review App!"
+puts "Hello, #{current_user.name}! Welcome to Review App!"
 
 choice = menu_drive(current_user)
 until choice == 9 do
