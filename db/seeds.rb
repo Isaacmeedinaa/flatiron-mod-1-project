@@ -1,7 +1,7 @@
 require 'json'
 require 'rest-client'
 require 'pry'
-require_relative '../config/environment'
+require_relative '../app/models/user.rb'
 
 url = "https://developers.zomato.com/api/v2.1/cuisines?city_id=292"
 a = RestClient.get(url, {"user-key" => "d69e6b8ed4f2ebcbc72de81478b91471"})
