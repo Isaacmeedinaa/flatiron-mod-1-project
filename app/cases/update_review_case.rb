@@ -15,14 +15,10 @@ def update_review(user)
         end
 
         puts "\n"
-        puts "Please provide a new review text:"
-        puts "\n"
-        updated_review_text = gets.chomp
+        updated_review_text = prompt.ask("Please provide a new review text:")
 
         puts "\n"
-        puts "Please provide a new review rating:"
-        puts "\n"
-        updated_review_rating = gets.chomp
+        updated_review_rating = prompt.slider('Please provide a review rating:', max: 10, step: 1)
 
         selected_review = list[num.to_i - 1]
 

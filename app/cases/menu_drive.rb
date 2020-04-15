@@ -3,31 +3,23 @@ def menu_drive(current_user)
 
   prompt = TTY::Prompt.new
 
-  choices = ['Write a review', 'List all my reviews', 'Update a review', 'Delete a review', 'List all restaurants', 'Exit']
-  option_menu_choice = prompt.enum_select("What would you like to do next?", choices)
+  choices = [['Write a review', 1], ['List all my reviews', 2], ['Update a review', 3], ['Delete a review', 4], ['List all restaurants', 5], ['Exit', 6]]
+  option_menu_choice = prompt.enum_select("What would you like to do next?", choices.to_h)
 
   puts "\n"
-    # binding.pry
-
-  # puts "1. Write a review"
-  # puts "2. List all my reviews"
-  # puts "3. Update a review"
-  # puts "4. Delete a review"
-  # puts "5. List all restaurants"
-  # puts "9. Exit"
   puts "\n"
   case option_menu_choice
-  when "Write a review"
+  when 1
     write_review(current_user)
-  when "List all my reviews"
+  when 2
     list_all_reviews(current_user)
-  when "Update a review"
+  when 3
     update_review(current_user)
-  when "Delete a review"
+  when 4
     delete_review(current_user)
-  when "List all restaurants"
+  when 5
     list_all_restaurants()
-  when "Exit"
+  when 6
     exit
   else
     

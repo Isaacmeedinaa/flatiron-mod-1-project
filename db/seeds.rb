@@ -1,7 +1,7 @@
 require 'json'
 require 'rest-client'
 require 'pry'
-require_relative '../config/environment'
+require_relative '../app/models/user.rb'
 
 Restaurant.destroy_all
 RestaurantFoodType.destroy_all
