@@ -20,5 +20,3 @@ rest_internet["restaurants"].each do |r|
     arr << r["restaurant"]["cuisines"]
     rest_list << arr
 end
-
-binding.pry

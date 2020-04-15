@@ -1,7 +1,4 @@
 require_relative '../config/environment'
-# require_relative 'write_review_case.rb'
-
-# binding.pry
 
 puts "Welcome to our Review App!"
 puts "\n"
