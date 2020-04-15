@@ -1,72 +1,60 @@
 def write_review(user)
     prompt = TTY::Prompt.new
-    puts "1. List all restaurants"
-    puts "2. List restaurants by food type"
+    menu_list = []
+    menu_list << ["List all restaurants", 1] 
+    menu_list << ["List restaurants by food type", 2]
     puts "\n"
 
-    write_review_choice = gets.chomp
+    write_review_choice = prompt.enum_select("Please choose option:", menu_list.to_h)
     puts "\n"
 
 
     if write_review_choice.to_i == 1
-        restaurant_choice = list_all_restaurants()
+        restaurant_choice = Restaurant.all.order(:name)
     else
         restaurant_food_type_list = RestaurantFoodType.all.order(:name)
 
-        restaurant_food_type_list.all.each_with_index do |food_type, i|
-            puts "#{i+1}. #{food_type.name}"
+        list = restaurant_food_type_list
+        num_list = []
+        list.each_with_index do |value, index|
+            liste = []
+            liste << value.name
+            liste << index + 1
+            num_list << liste
         end
-
         puts "\n"
 
-        food_type_choice = gets.chomp
-
-        while food_type_choice.to_i > restaurant_food_type_list.length || food_type_choice.to_i == 0
-            puts "Invalid choice, please try again."
-            puts "\n"
-            food_type_choice = gets.chomp
-        end
+        food_type_choice = prompt.enum_select("Please select the food type:", num_list.to_h)
 
         restaurant_food_type = restaurant_food_type_list[food_type_choice.to_i - 1]
 
-        restaurant_choice = list_all_restaurants(restaurant_food_type.id)        
+        restaurant_choice = Restaurant.all.where(restaurant_food_type_id: restaurant_food_type.id)       
+    end
+
+    list = restaurant_choice
+    num_list = []
+    list.each_with_index do |value, index|
+        liste = []
+        liste << value.name
+        liste << index + 1
+        num_list << liste
     end
 
     puts "\n"
-    puts "What restaurant would like to write a review for?"
-    puts "\n"
 
-    searched_restaurant = gets.chomp    
-
-    while searched_restaurant.to_i > restaurant_choice.length || searched_restaurant.to_i == 0
-        puts "Invalid choice, please try again."
-        puts "\n"
-        searched_restaurant = gets.chomp
-    end
+    searched_restaurant = prompt.enum_select("Please select the restaurant you want to review:", num_list.to_h)
 
     found_restaurant = Restaurant.find(restaurant_choice[searched_restaurant.to_i - 1].id)
-
-    # until found_restaurant || searched_restaurant == "exit" do
-    #     puts "\n"
-    #     puts "No restaurant found, try again"
-    #     searched_restaurant = gets.chomp
-    #     found_restaurant = Restaurant.find_by(name: searched_restaurant)
-    # end
 
     puts "\n"
     puts "Please provide a review message:"
     puts "\n"
     review_message = gets.chomp
-
+    review_rating = prompt.slider('Please provide a review rating:', max: 10, step: 1)
+    
     puts "\n"
-    puts "Please provide a review rating:"
-    puts "\n"
-    review_rating = gets.chomp
-
-    puts "\n"
-
     if prompt.yes?('Are you sure you want to post this review?')
-        new_review = Review.create(review_text: review_message, rating: review_rating.to_i)
+        new_review = Review.create(review_text: review_message, rating: review_rating)
         user.reviews << new_review
         found_restaurant.reviews << new_review
         puts "\n"
