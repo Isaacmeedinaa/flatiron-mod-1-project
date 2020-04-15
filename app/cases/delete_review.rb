@@ -4,6 +4,11 @@ def delete_review(user)
     puts "Please selete the review you would like to delete."
     puts "\n"
     num = gets.chomp
+    while num.to_i > list.length || num.to_i == 0
+      puts "Invalid choice, please try again."
+      puts "\n"
+      num = gets.chomp
+    end
     puts "You are about to delete this review:"
     puts "\n"
     this_review = list[num.to_i - 1]
@@ -15,7 +20,7 @@ def delete_review(user)
       Review.destroy(this_review.id)
       puts "Your review has been deleted!"
     else
-      puts "No reivew is deleted."
+      puts "No review was deleted."
     end
     # review_list = user.reviews.order(created_at: :desc)
     # review_list.each_with_index do |item, index|

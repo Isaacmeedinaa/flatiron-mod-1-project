@@ -6,6 +6,12 @@ def update_review(user)
 
         num = gets.chomp
 
+        while num.to_i > list.length || num.to_i == 0
+            puts "Invalid choice, please try again."
+            puts "\n"
+            num = gets.chomp
+        end
+
         puts "\n"
         puts "Please provide a new review text:"
         puts "\n"

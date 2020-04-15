@@ -3,6 +3,10 @@ require 'rest-client'
 require 'pry'
 require_relative '../config/environment'
 
+Restaurant.destroy_all
+RestaurantFoodType.destroy_all
+Review.destroy_all
+
 url = "https://developers.zomato.com/api/v2.1/cuisines?city_id=292"
 a = RestClient.get(url, {"user-key" => "d69e6b8ed4f2ebcbc72de81478b91471"})
 hash_from_internet = JSON.parse(a.body)
@@ -21,5 +25,16 @@ rest_internet["restaurants"].each do |r|
     arr << r["restaurant"]["cuisines"]
     rest_list << arr
 end
-a = User.all
-binding.pry
+
+p rest_list
+
+rest_list.each do |item|
+    restaurant = Restaurant.create(name: item[0], city: "Chicago")
+    restaurant_food_type = RestaurantFoodType.find_by(name: item[1])
+    
+    if !restaurant_food_type
+        restaurant_food_type = RestaurantFoodType.create(name: item[1])
+    end
+
+    restaurant_food_type.restaurants << restaurant
+end
