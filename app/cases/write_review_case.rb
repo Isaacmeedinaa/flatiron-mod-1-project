@@ -1,4 +1,5 @@
 def write_review(user)
+    prompt = TTY::Prompt.new
     puts "1. List all restaurants"
     puts "2. List restaurants by food type"
     puts "\n"
@@ -63,11 +64,8 @@ def write_review(user)
     review_rating = gets.chomp
 
     puts "\n"
-    puts "Are you sure you want to post this review?"
-    puts "\n"
-    confirmation = gets.chomp
 
-    if confirmation.downcase == "yes"
+    if prompt.yes?('Are you sure you want to post this review?')
         new_review = Review.create(review_text: review_message, rating: review_rating.to_i)
         user.reviews << new_review
         found_restaurant.reviews << new_review
