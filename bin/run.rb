@@ -1,7 +1,8 @@
 require_relative '../config/environment'
 # require_relative 'write_review_case.rb'
 
-# binding.pry
+prompt = TTY::Prompt.new
+
 print "\e[2J\e[f"
 puts "Welcome to our Review App!"
 puts "\n"

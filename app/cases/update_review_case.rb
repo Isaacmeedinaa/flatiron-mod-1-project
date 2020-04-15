@@ -1,4 +1,6 @@
 def update_review(user)
+    prompt = TTY::Prompt.new
+
     list = list_all_reviews(user)
     if list.length > 0
         puts "Please select the review you would like to update:"
@@ -25,9 +27,7 @@ def update_review(user)
         selected_review = list[num.to_i - 1]
 
         puts "\n"
-        puts "Are you sure?"
-        puts "\n"
-        if gets.chomp.downcase == "yes"
+        if prompt.yes?('Are you sure you want to update this review?')
             selected_review.update(review_text: updated_review_text, rating: updated_review_rating)
             puts "Your review has been updated!"
         else
