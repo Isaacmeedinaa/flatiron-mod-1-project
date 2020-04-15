@@ -23,13 +23,16 @@ rest_internet["restaurants"].each do |r|
     arr = []
     arr << r["restaurant"]["name"]
     arr << r["restaurant"]["cuisines"]
+    arr << r["restaurant"]["timings"]
+    arr << r["restaurant"]["location"]["address"]
+    arr << r["restaurant"]["price_range"]
     rest_list << arr
 end
 
 p rest_list
 
 rest_list.each do |item|
-    restaurant = Restaurant.create(name: item[0], city: "Chicago")
+    restaurant = Restaurant.create(name: item[0], city: "Chicago", timings: item[2], address: item[3], price_range: item[4])
     restaurant_food_type = RestaurantFoodType.find_by(name: item[1])
     
     if !restaurant_food_type
