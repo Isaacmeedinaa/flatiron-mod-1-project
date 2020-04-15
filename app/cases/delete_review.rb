@@ -1,4 +1,6 @@
 def delete_review(user)
+  prompt = TTY::Prompt.new
+
   list = list_all_reviews(user)
   if list.length > 0
     puts "Please selete the review you would like to delete."
@@ -14,9 +16,7 @@ def delete_review(user)
     this_review = list[num.to_i - 1]
     puts "#{num.to_i}. #{this_review.restaurant.name} (#{this_review.restaurant.restaurant_food_type.name}) - Rating: #{this_review.rating} on #{this_review.created_at.strftime("%F")}"
     puts "\n"
-    puts "Are you sure?"
-    puts "\n"
-    if gets.chomp.downcase == "yes"
+    if prompt.yes?('Are you sure you want to delete this review?')
       Review.destroy(this_review.id)
       puts "Your review has been deleted!"
     else

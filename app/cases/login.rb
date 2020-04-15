@@ -1,16 +1,14 @@
 def login
-  puts "Please type in your username:"
+  prompt = TTY::Prompt.new
+  username = prompt.ask('Please type in your username:')
   puts "\n"
-
-  username = gets.chomp
 
   current_user = User.find_user_by_name(username)
 
   if !current_user
     puts "\n"
-    puts "User not found. Would you like to create a new user?"
     puts "\n"
-    if gets.chomp.downcase == "yes"
+    if prompt.yes?('User not found. Would you like to create a new user?')
       current_user = User.create(name: username)
     else
       puts "\n"
