@@ -1,6 +1,7 @@
 require 'json'
 require 'rest-client'
 require 'pry'
+require_relative '../config/environment'
 
 url = "https://developers.zomato.com/api/v2.1/cuisines?city_id=292"
 a = RestClient.get(url, {"user-key" => "d69e6b8ed4f2ebcbc72de81478b91471"})
@@ -20,5 +21,5 @@ rest_internet["restaurants"].each do |r|
     arr << r["restaurant"]["cuisines"]
     rest_list << arr
 end
-
+a = User.all
 binding.pry
