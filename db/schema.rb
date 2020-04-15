@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 4) do
+ActiveRecord::Schema.define(version: 7) do
 
   create_table "restaurant_food_types", force: :cascade do |t|
     t.string "name"
@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(version: 4) do
     t.string "name"
     t.string "city"
     t.integer "restaurant_food_type_id"
+    t.string "timings"
+    t.string "address"
+    t.integer "price_range"
   end
 
   create_table "reviews", force: :cascade do |t|
