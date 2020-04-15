@@ -1,19 +1,26 @@
-def list_all_restaurants(food_type=nil)
-    
+def list_all_restaurants
+    prompt = TTY::Prompt.new
+
     puts "\n"
     puts "Here are all the restaurants:"
     puts "\n"
 
-    if food_type
-        restaurant_list = Restaurant.all.where(restaurant_food_type_id: food_type)
-    else
-        restaurant_list = Restaurant.all.order(:name)
-    end
+    restaurant_list = Restaurant.all.order(:name)
 
-    
-    restaurant_list.each_with_index do |restaurant, i|
-        puts "#{i+1}. #{restaurant.name} located in #{restaurant.city}. Food type is: #{restaurant.restaurant_food_type.name}"
+    list = restaurant_list
+    num_list = []
+    list.each_with_index do |value, index|
+        liste = []
+        liste << value.name
+        liste << index + 1
+        num_list << liste
     end
+    puts "\n"
 
-    restaurant_list
+    restaurant_choice = prompt.enum_select("Please select a restaurant to see details:", num_list.to_h)
+    puts "\n"
+    puts "   Name: #{restaurant_list[restaurant_choice - 1].name}"
+    puts "   Address: #{restaurant_list[restaurant_choice - 1].address}"
+    puts "   Timing: #{restaurant_list[restaurant_choice - 1].timings}"
+    puts "   Price Range: #{restaurant_list[restaurant_choice - 1].price_range}"
 end
