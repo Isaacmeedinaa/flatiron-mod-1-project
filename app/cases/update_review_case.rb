@@ -24,7 +24,9 @@ def update_review(user)
 
         puts "\n"
         
-        updated_review_text = prompt.ask("Please provide a new review text:")
+        updated_review_text = prompt.ask("Please provide a new review text:") do |q|
+            q.required true
+        end
 
         puts "\n"
         updated_review_rating = prompt.slider('Please provide a review rating:', max: 10, step: 1)

@@ -22,33 +22,20 @@ def write_review(user)
         # get a list of all restaurant food types
         restaurant_food_type_list = RestaurantFoodType.all.order(:name)
 
-        # custom to get list into TTY prompt enum_select format
-        list = restaurant_food_type_list
-        num_list = []
-        list.each_with_index do |value, index|
-            liste = []
-            liste << value.name
-            liste << index + 1
-            num_list << liste
-        end
+        # call utility to get list into TTY prompt enum_select format
+        num_list = get_enum_list(restaurant_food_type_list, :name)
+
         puts "\n"
 
         food_type_choice = prompt.enum_select("Please select the food type:", num_list.to_h, per_page: 10)
 
         restaurant_food_type = restaurant_food_type_list[food_type_choice.to_i - 1]
 
-        restaurant_choice = Restaurant.all.where(restaurant_food_type_id: restaurant_food_type.id)       
+        restaurant_choice = Restaurant.all.where(restaurant_food_type_id: restaurant_food_type.id).order(:name)       
     end
 
-    # custom to get list into TTY prompt enum_select format
-    list = restaurant_choice
-    num_list = []
-    list.each_with_index do |value, index|
-        liste = []
-        liste << value.name
-        liste << index + 1
-        num_list << liste
-    end
+    # call utility to get list into TTY prompt enum_select format
+    num_list = get_enum_list(restaurant_choice, :name)
 
     puts "\n"
 
@@ -57,9 +44,10 @@ def write_review(user)
     found_restaurant = Restaurant.find(restaurant_choice[searched_restaurant.to_i - 1].id)
 
     puts "\n"
-    puts "Please provide a review message:"
+    review_message = prompt.ask("Please provide a review message:") do |q|
+        q.required true
+    end
     puts "\n"
-    review_message = gets.chomp
     review_rating = prompt.slider('Please provide a review rating:', max: 10, step: 1)
     
     puts "\n"

@@ -8,13 +8,14 @@ def delete_review(user)
 
   # We check if user has any reviews to display a list.
   if list.length > 0
-    puts "Please selete the review you would like to delete."
+
     puts "\n"
-    num = gets.chomp
+    num = prompt.ask("Please select the review you would like to delete:")
+    
     while num.to_i > list.length || num.to_i == 0
       puts "Invalid choice, please try again."
       puts "\n"
-      num = gets.chomp
+      num = prompt.ask("Please select the review you would like to delete:")
     end
     puts "You are about to delete this review:"
     puts "\n"
