@@ -8,7 +8,7 @@ def menu_drive(current_user)
   prompt = TTY::Prompt.new
 
   choices = [['Write a review', 1], ['List all my reviews', 2], ['Update a review', 3], ['Delete a review', 4], ['List all restaurants', 5], ['Exit', 6]]
-  option_menu_choice = prompt.enum_select("What would you like to do next?", choices.to_h)
+  option_menu_choice = prompt.enum_select("What would you like to do next? 🤔", choices.to_h)
 
   puts "\n"
   puts "\n"
