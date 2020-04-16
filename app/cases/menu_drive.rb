@@ -18,7 +18,7 @@ def menu_drive(current_user)
   when 4
     delete_review(current_user)
   when 5
-    list_all_restaurants()
+    list_all_restaurants(current_user)
   when 6
     exit
   else

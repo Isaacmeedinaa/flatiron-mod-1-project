@@ -25,7 +25,17 @@ def update_review(user)
         puts "\n"
         if prompt.yes?('Are you sure you want to update this review?')
             selected_review.update(review_text: updated_review_text, rating: updated_review_rating)
+            puts "\n"
             puts "Your review has been updated!"
+
+            if updated_review_rating > 7
+                puts "\n"
+                add_to_favorite_choice = prompt.yes?("You seem to like this restaurant. Would you like to add this restaurant as your favorite?")
+
+                if add_to_favorite_choice
+                    user.update(favorite_restaurant_name: selected_review.restaurant.name)                
+                end
+            end
         else
             puts "Review has not been updated."
         end
