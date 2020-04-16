@@ -25,7 +25,7 @@ else
 end
 
 choice = menu_drive(current_user)
-until choice == 9 do
+until choice == 6 do
     choice = menu_drive(current_user)
 end
 
@@ -36,7 +36,7 @@ end
 #     puts "3. Update a review"
 #     puts "4. Delete a review"
 #     puts "5. List all restaurants"
-#     puts "9. Exit"
+#     puts "6. Exit"
 #     puts "\n"
 
 #     option_menu_choice = gets.chomp
@@ -52,33 +52,3 @@ end
 #     end
 #     option_menu_choice.to_i
 # end
-# 1. Write a review !COMPLETED!
-    # What restaurant would like to write a review for?
-    # if restaurant is not found: "No restaurant found, try again".
-    # (loop until we get an 'exit', or 'found restaurant')
-    # If restaurant is found, continue.
-        # Please provide a review message:
-        # Please provide a rating:
-            # Are you sure you want to post this review? 
-                # If 'yes', post (save).
-                # If 'no', exit.
-
-# 2. List all my reviews
-    # Here are all your reviews:
-
-# 3. Update a review !COMPLETED (needs review)!
-    # Here are all your reviews, please choose one:
-        # Please enter updated review text:
-        # Please enter updated review rating:
-            # Are you sure you want to update this review?
-                # If 'yes', update (update).
-                # If 'no', exit.
-
-# 4. Delete a review
-    # Here are all your reviews, please choose one:
-        # Are you sure you want to delete this review?
-            # If 'yes', delete (delete).
-            # If 'no', exit.
-
-# 5. List all restaurants !COMPLETED!
-    # Here are all the restaurants:
