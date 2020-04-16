@@ -22,10 +22,5 @@ def delete_review(user)
     else
       puts "No review was deleted."
     end
-    # review_list = user.reviews.order(created_at: :desc)
-    # review_list.each_with_index do |item, index|
-    #   puts "#{index + 1}. #{item.restaurant.name} (#{item.restaurant.restaurant_food_type.name}) - Rating: #{item.rating} on #{item.created_at.strftime("%F")}"
-    #   puts "     Comments: '#{item.review_text}'"
-    # end
   end
 end
