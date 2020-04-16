@@ -11,15 +11,8 @@ def list_all_restaurants(user)
 
     restaurant_list = Restaurant.all.order(:name)
 
-    # custom to get list into TTY prompt enum_select format
-    list = restaurant_list
-    num_list = []
-    list.each_with_index do |value, index|
-        liste = []
-        liste << value.name
-        liste << index + 1
-        num_list << liste
-    end
+    # call utility to get list into TTY prompt enum_select format
+    num_list = get_enum_list(restaurant_list, :name)
     puts "\n"
 
     # Lets user select a restaurant
@@ -33,6 +26,7 @@ def list_all_restaurants(user)
     puts "\n"
     # Prints out all of the restaurants details
     puts "   Name: #{restaurant_list[restaurant_choice - 1].name}"
+    puts "   Food Type: #{restaurant_list[restaurant_choice - 1].restaurant_food_type.name}"
     puts "   Address: #{restaurant_list[restaurant_choice - 1].address}"
     puts "   Timing: #{restaurant_list[restaurant_choice - 1].timings}"
     puts "   Price Range: #{restaurant_list[restaurant_choice - 1].price_range}"
