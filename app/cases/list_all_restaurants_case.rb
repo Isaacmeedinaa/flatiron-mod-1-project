@@ -33,7 +33,20 @@ def list_all_restaurants(user)
     puts "   Average rating: #{avg_rating}"
 
     puts "\n"
-
+    # List all reviews of this restaurant if user choose to
+    want_to_see_reviews = prompt.yes?("Would you like to see this restaurant's reviews?")
+    puts "\n"
+    if want_to_see_reviews
+        rev_list = restaurant_list[restaurant_choice - 1].reviews.order(rating: :desc)
+        if rev_list.length > 0
+            rev_list.each_with_index do |item, index|
+                puts "  #{index + 1}) '#{item.review_text}' - Rating: #{item.rating} on #{item.created_at.strftime("%F")}"
+            end
+        else     
+            puts "No reviews for this restaurant."
+        end
+    end
+    puts "\n"
     # we ask if they want to mark that restaurant as favorite.
     add_to_favorite_choice = prompt.yes?("Would you like to add this restaurant as your favorite?")
 
