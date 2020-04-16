@@ -13,7 +13,7 @@ def delete_review(user)
     num = prompt.ask("Please select the review you would like to delete:")
     
     while num.to_i > list.length || num.to_i == 0
-      puts "Invalid choice, please try again."
+      puts "Invalid choice, please try again. 🛑"
       puts "\n"
       num = prompt.ask("Please select the review you would like to delete:")
     end
@@ -24,7 +24,7 @@ def delete_review(user)
     puts "\n"
 
     # we ask users if they are sure to delete the review
-    if prompt.yes?('Are you sure you want to delete this review?')
+    if prompt.yes?('Are you sure you want to delete this review? 🤔')
       Review.destroy(this_review.id)
       puts "Your review has been deleted!"
     else

@@ -17,7 +17,7 @@ def update_review(user)
 
         # custom code to check for selection out of bounds.
         while num.to_i > list.length || num.to_i == 0
-            puts "Invalid choice, please try again."
+            puts "Invalid choice, please try again. 🛑"
             puts "\n"
             num = gets.chomp
         end
@@ -35,7 +35,7 @@ def update_review(user)
 
         puts "\n"
         # ask user if they want to update review
-        if prompt.yes?('Are you sure you want to update this review?')
+        if prompt.yes?('Are you sure you want to update this review? 🤔')
             selected_review.update(review_text: updated_review_text, rating: updated_review_rating)
             puts "\n"
             puts "Your review has been updated!"
@@ -43,7 +43,7 @@ def update_review(user)
             # if rating is greater than 7, we ask if they want to mark that restaurant as favorite.
             if updated_review_rating > 7
                 puts "\n"
-                add_to_favorite_choice = prompt.yes?("You seem to like this restaurant. Would you like to add this restaurant as your favorite?")
+                add_to_favorite_choice = prompt.yes?("You seem to like this restaurant. Would you like to add this restaurant as your favorite? 🤔")
 
                 if add_to_favorite_choice
                     user.update(favorite_restaurant_name: selected_review.restaurant.name)                
