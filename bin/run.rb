@@ -3,23 +3,23 @@ require_relative '../config/environment'
 prompt = TTY::Prompt.new
 
 print "\e[2J\e[f"
-puts "Welcome to I**2 Restaurant Review!"
+puts "Welcome to I**2 Restaurant Review! 👋"
 puts "\n"
 
 current_user = login
 
 print "\e[2J\e[f"
 puts "\n"
-puts "Hello, #{current_user.name}! Welcome to I**2 Restaurant Review!"
+puts "Hello, #{current_user.name}! Welcome to I**2 Restaurant Review! 👋"
 
 hash = Review.group(:restaurant_id).average(:rating)
 array = hash.max_by{|k,v|v}
 puts "\n"
-puts "Today's top rated restaurant is: #{Restaurant.find(array[0]).name} (rating: #{array[1].to_f.round(2)}/10)"
+puts "💥💥Today's top rated restaurant is: #{Restaurant.find(array[0]).name} (rating: #{array[1].to_f.round(2)}/10)💥💥"
 puts "\n"
 
 if current_user.favorite_restaurant_name
-    puts "Your favorite restaurant is: #{current_user.favorite_restaurant_name}"
+    puts "Your favorite restaurant is: #{current_user.favorite_restaurant_name} 👍"
 else
     puts "You have no favorite restaurant."
 end

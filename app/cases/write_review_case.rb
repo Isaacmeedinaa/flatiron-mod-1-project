@@ -52,7 +52,7 @@ def write_review(user)
     
     puts "\n"
     # user is given the option to post review or not
-    if prompt.yes?('Are you sure you want to post this review?')
+    if prompt.yes?('Are you sure you want to post this review? 🤔')
         new_review = Review.create(review_text: review_message, rating: review_rating)
         user.reviews << new_review
         found_restaurant.reviews << new_review
@@ -62,7 +62,7 @@ def write_review(user)
         # if rating is greater than 7, we ask if they want to mark that restaurant as favorite.
         if review_rating > 7
             puts "\n"
-            add_to_favorite_choice = prompt.yes?("You seem to like this restaurant. Would you like to add this restaurant as your favorite?")
+            add_to_favorite_choice = prompt.yes?("You seem to like this restaurant. Would you like to add this restaurant as your favorite? 🤔")
 
             if add_to_favorite_choice
                 user.update(favorite_restaurant_name: new_review.restaurant.name)                
