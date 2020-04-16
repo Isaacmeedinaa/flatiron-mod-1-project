@@ -10,9 +10,9 @@ def list_all_restaurants(user)
     puts "\n"
 
     restaurant_list = Restaurant.all.order(:name)
-
+    fav = restaurant_list.find_index{|i|i.name == user.favorite_restaurant_name}
     # call utility to get list into TTY prompt enum_select format
-    num_list = get_enum_list(restaurant_list, :name)
+    num_list = get_enum_list(restaurant_list, :name, fav)
     puts "\n"
 
     # Lets user select a restaurant
