@@ -24,7 +24,7 @@ def write_review(user)
         end
         puts "\n"
 
-        food_type_choice = prompt.enum_select("Please select the food type:", num_list.to_h)
+        food_type_choice = prompt.enum_select("Please select the food type:", num_list.to_h, per_page: 10)
 
         restaurant_food_type = restaurant_food_type_list[food_type_choice.to_i - 1]
 
@@ -42,7 +42,7 @@ def write_review(user)
 
     puts "\n"
 
-    searched_restaurant = prompt.enum_select("Please select the restaurant you want to review:", num_list.to_h)
+    searched_restaurant = prompt.enum_select("Please select the restaurant you want to review:", num_list.to_h, per_page: 10)
 
     found_restaurant = Restaurant.find(restaurant_choice[searched_restaurant.to_i - 1].id)
 
