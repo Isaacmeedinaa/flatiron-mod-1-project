@@ -17,7 +17,7 @@ def list_all_restaurants(user)
     end
     puts "\n"
 
-    restaurant_choice = prompt.enum_select("Please select a restaurant to see details:", num_list.to_h)
+    restaurant_choice = prompt.enum_select("Please select a restaurant to see details:", num_list.to_h, per_page: 10)
     rest_choice_id = restaurant_list[restaurant_choice - 1].id
     if Review.all.where(restaurant_id: rest_choice_id).length > 0
         avg_rating = "#{Review.all.where(restaurant_id: rest_choice_id).average(:rating).to_f.round(2)}/10 (#{Review.all.where(restaurant_id: rest_choice_id).length} reviews)" 
