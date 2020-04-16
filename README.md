@@ -57,3 +57,35 @@ Projects need to be approved prior to launching into them, so take some time to 
 # in config/environment.rb add this line:
 ActiveRecord::Base.logger = nil
 ```
+
+### LOGIC NOTES:
+# 1. Write a review !COMPLETED!
+    # What restaurant would like to write a review for?
+    # if restaurant is not found: "No restaurant found, try again".
+    # (loop until we get an 'exit', or 'found restaurant')
+    # If restaurant is found, continue.
+        # Please provide a review message:
+        # Please provide a rating:
+            # Are you sure you want to post this review? 
+                # If 'yes', post (save).
+                # If 'no', exit.
+
+# 2. List all my reviews
+    # Here are all your reviews:
+
+# 3. Update a review !COMPLETED (needs review)!
+    # Here are all your reviews, please choose one:
+        # Please enter updated review text:
+        # Please enter updated review rating:
+            # Are you sure you want to update this review?
+                # If 'yes', update (update).
+                # If 'no', exit.
+
+# 4. Delete a review
+    # Here are all your reviews, please choose one:
+        # Are you sure you want to delete this review?
+            # If 'yes', delete (delete).
+            # If 'no', exit.
+
+# 5. List all restaurants !COMPLETED!
+    # Here are all the restaurants:

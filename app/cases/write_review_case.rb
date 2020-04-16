@@ -1,6 +1,11 @@
+# Purpose of this method is to allow a user to write a review.
+# Also, to let a user set a restaurant as their favorite.
+
 def write_review(user)
     prompt = TTY::Prompt.new
     menu_list = []
+
+    # User is given the option to list all reviews or list restaurants by food type
     menu_list << ["List all restaurants", 1] 
     menu_list << ["List restaurants by food type", 2]
     puts "\n"
@@ -9,11 +14,15 @@ def write_review(user)
     puts "\n"
 
 
+    # Handles the user selection
     if write_review_choice.to_i == 1
+        # get a list of all restaurant names
         restaurant_choice = Restaurant.all.order(:name)
     else
+        # get a list of all restaurant food types
         restaurant_food_type_list = RestaurantFoodType.all.order(:name)
 
+        # custom to get list into TTY prompt enum_select format
         list = restaurant_food_type_list
         num_list = []
         list.each_with_index do |value, index|
@@ -31,6 +40,7 @@ def write_review(user)
         restaurant_choice = Restaurant.all.where(restaurant_food_type_id: restaurant_food_type.id)       
     end
 
+    # custom to get list into TTY prompt enum_select format
     list = restaurant_choice
     num_list = []
     list.each_with_index do |value, index|
@@ -53,6 +63,7 @@ def write_review(user)
     review_rating = prompt.slider('Please provide a review rating:', max: 10, step: 1)
     
     puts "\n"
+    # user is given the option to post review or not
     if prompt.yes?('Are you sure you want to post this review?')
         new_review = Review.create(review_text: review_message, rating: review_rating)
         user.reviews << new_review
@@ -60,6 +71,7 @@ def write_review(user)
         puts "\n"
         puts "Review posted!"
 
+        # if rating is greater than 7, we ask if they want to mark that restaurant as favorite.
         if review_rating > 7
             puts "\n"
             add_to_favorite_choice = prompt.yes?("You seem to like this restaurant. Would you like to add this restaurant as your favorite?")

@@ -1,3 +1,7 @@
+# This method's purpose is to handle the applications login.
+# If a username entered by user doesn't exist, we allow the 
+# user to create a username.
+
 def login
   prompt = TTY::Prompt.new
   username = prompt.ask('Please type in your username:')
