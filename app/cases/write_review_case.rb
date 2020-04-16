@@ -44,9 +44,10 @@ def write_review(user)
     found_restaurant = Restaurant.find(restaurant_choice[searched_restaurant.to_i - 1].id)
 
     puts "\n"
-    puts "Please provide a review message:"
+    review_message = prompt.ask("Please provide a review message:") do |q|
+        q.required true
+    end
     puts "\n"
-    review_message = gets.chomp
     review_rating = prompt.slider('Please provide a review rating:', max: 10, step: 1)
     
     puts "\n"
