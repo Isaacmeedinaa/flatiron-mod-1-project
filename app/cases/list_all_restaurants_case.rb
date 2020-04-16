@@ -43,7 +43,7 @@ def list_all_restaurants(user)
                 puts "  #{index + 1}) '#{item.review_text}' - Rating: #{item.rating} on #{item.created_at.strftime("%F")}"
             end
         else     
-            puts "No reviews for this restaurant."
+            puts "No review for this restaurant."
         end
     end
     puts "\n"
