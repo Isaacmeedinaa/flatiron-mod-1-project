@@ -18,9 +18,21 @@ def list_all_restaurants
     puts "\n"
 
     restaurant_choice = prompt.enum_select("Please select a restaurant to see details:", num_list.to_h)
+    rest_choice_id = restaurant_list[restaurant_choice - 1].id
+    if Review.all.where(restaurant_id: rest_choice_id).length > 0
+        avg_rating = "#{Review.all.where(restaurant_id: rest_choice_id).average(:rating).to_f.round(2)}/10 (#{Review.all.where(restaurant_id: rest_choice_id).length} reviews)" 
+    else 
+        avg_rating = "No reviews"
+    end
     puts "\n"
     puts "   Name: #{restaurant_list[restaurant_choice - 1].name}"
     puts "   Address: #{restaurant_list[restaurant_choice - 1].address}"
     puts "   Timing: #{restaurant_list[restaurant_choice - 1].timings}"
     puts "   Price Range: #{restaurant_list[restaurant_choice - 1].price_range}"
+    puts "   Average rating: #{avg_rating}"
 end
+
+
+# hash = Review.group(:restaurant_id).average(:rating)
+# array = hash.max_by{|k,v|v}
+# array[0] is the restaurant id array[1].to_f is the rating
