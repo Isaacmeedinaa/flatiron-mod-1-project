@@ -59,6 +59,17 @@ def write_review(user)
         found_restaurant.reviews << new_review
         puts "\n"
         puts "Review posted!"
+
+        if review_rating > 7
+            puts "\n"
+            add_to_favorite_choice = prompt.yes?("You seem to like this restaurant. Would you like to add this restaurant as your favorite?")
+
+            if add_to_favorite_choice
+
+                binding.pry
+                user.update(favorite_restaurant_name: new_review.restaurant.name)                
+            end
+        end
     else
         puts "\n"
         puts "Review not posted!"

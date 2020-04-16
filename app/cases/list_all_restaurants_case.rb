@@ -1,4 +1,4 @@
-def list_all_restaurants
+def list_all_restaurants(user)
     prompt = TTY::Prompt.new
 
     puts "\n"
@@ -30,8 +30,14 @@ def list_all_restaurants
     puts "   Timing: #{restaurant_list[restaurant_choice - 1].timings}"
     puts "   Price Range: #{restaurant_list[restaurant_choice - 1].price_range}"
     puts "   Average rating: #{avg_rating}"
-end
 
+    puts "\n"
+    add_to_favorite_choice = prompt.yes?("Would you like to add this restaurant as your favorite?")
+
+    if add_to_favorite_choice
+        user.update(favorite_restaurant_name: restaurant_list[restaurant_choice - 1].name)
+    end
+end
 
 # hash = Review.group(:restaurant_id).average(:rating)
 # array = hash.max_by{|k,v|v}
