@@ -34,16 +34,14 @@ def list_all_restaurants(user)
 
     puts "\n"
     # List all reviews of this restaurant if user choose to
-    want_to_see_reviews = prompt.yes?("Would you like to see this restaurant's reviews?")
-    puts "\n"
-    if want_to_see_reviews
-        rev_list = restaurant_list[restaurant_choice - 1].reviews.order(rating: :desc)
-        if rev_list.length > 0
+    if avg_rating != "No reviews"
+        want_to_see_reviews = prompt.yes?("Would you like to see this restaurant's reviews?")
+        puts "\n"
+        if want_to_see_reviews
+            rev_list = restaurant_list[restaurant_choice - 1].reviews.order(rating: :desc)
             rev_list.each_with_index do |item, index|
-                puts "  #{index + 1}) '#{item.review_text}' - Rating: #{item.rating} on #{item.created_at.strftime("%F")}"
+                puts "  #{index + 1}) '#{item.review_text}' - Rating: #{item.rating} by #{item.user.name} on #{item.created_at.strftime("%F")}"
             end
-        else     
-            puts "No exiting review for this restaurant."
         end
     end
     puts "\n"

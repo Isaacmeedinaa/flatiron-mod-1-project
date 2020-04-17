@@ -25,7 +25,7 @@ else
 end
 
 choice = menu_drive(current_user)
-until choice == 6 do
+until choice == 4 do
     choice = menu_drive(current_user)
 end
 
