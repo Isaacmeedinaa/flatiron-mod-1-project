@@ -1,34 +1,37 @@
 require_relative '../config/environment'
 
 prompt = TTY::Prompt.new
+cmd = " "
+until cmd == "exit" do
+    print "\e[2J\e[f"
+    puts "Welcome to I**2 Restaurant Review! 👋"
+    puts "\n"
 
-print "\e[2J\e[f"
-puts "Welcome to I**2 Restaurant Review! 👋"
-puts "\n"
+    current_user = login
 
-current_user = login
+    print "\e[2J\e[f"
+    puts "\n"
+    puts "Hello, #{current_user.name}! Welcome to I**2 Restaurant Review! 👋"
 
-print "\e[2J\e[f"
-puts "\n"
-puts "Hello, #{current_user.name}! Welcome to I**2 Restaurant Review! 👋"
+    hash = Review.group(:restaurant_id).average(:rating)
+    array = hash.max_by{|k,v|v}
+    puts "\n"
+    puts "💥💥Today's top rated restaurant is: #{Restaurant.find(array[0]).name} (rating: #{array[1].to_f.round(2)}/10)💥💥"
+    puts "\n"
 
-hash = Review.group(:restaurant_id).average(:rating)
-array = hash.max_by{|k,v|v}
-puts "\n"
-puts "💥💥Today's top rated restaurant is: #{Restaurant.find(array[0]).name} (rating: #{array[1].to_f.round(2)}/10)💥💥"
-puts "\n"
+    if current_user.favorite_restaurant_name
+        puts "Your favorite restaurant is: #{current_user.favorite_restaurant_name} 👍"
+    else
+        puts "You have no favorite restaurant."
+    end
 
-if current_user.favorite_restaurant_name
-    puts "Your favorite restaurant is: #{current_user.favorite_restaurant_name} 👍"
-else
-    puts "You have no favorite restaurant."
-end
-
-choice = menu_drive(current_user)
-until choice == 4 do
     choice = menu_drive(current_user)
+    until choice == 4 do
+        choice = menu_drive(current_user)
+    end
+    puts "exit?"
+    cmd = gets.chomp
 end
-
 # def menu1
 #     puts "\n"
 #     puts "1. Write a review"
